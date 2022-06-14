@@ -1,3 +1,5 @@
+import axios from "axios";
+
 function Form() {
   function onFormSubmit(event) {
     event.preventDefault();
@@ -8,7 +10,12 @@ function Form() {
     // alert(`${event.target[0].value} ${event.target[1].value}`);
 
     const formData = new FormData(event.target);
-    alert (`${formData.get('first_name')} ${formData.get('last_name')} ${formData.get('age')} ${formData.get('country')} ${formData.get('city')}`);
+    // alert (`${formData.get('first_name')} ${formData.get('last_name')} ${formData.get('age')} ${formData.get('country')} ${formData.get('city')}`);
+
+
+
+
+    axios.post('https://crud1-9a38a-default-rtdb.firebaseio.com/people.json', Object.fromEntries(formData.entries()));
 
   }
 
@@ -24,7 +31,7 @@ function Form() {
           <input type="text" name="last_name" />
         </label>
         <label>
-          
+
           Age:
           <input type="text" name="age"  />
         </label>
@@ -45,6 +52,4 @@ function Form() {
   );
 }
 
-export default Form
-
-;
+export default Form;
